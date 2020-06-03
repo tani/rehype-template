@@ -1,0 +1,36 @@
+{
+  "name": "rehype-template",
+  "version": "0.1.0",
+  "description": "Rehype plugin to wrap contents with htm template",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "keywords": [
+    "remark",
+    "htm",
+    "unified",
+    "rehype-plugin",
+    "rehype",
+    "hast",
+    "frontmatter",
+    "yaml",
+    "toml"
+  ],
+  "author": "TANIGUCHI Masaya",
+  "license": "MIT",
+  "dependencies": {
+    "hastscript": "^5.1.2",
+    "htm": "^3.0.4"
+  },
+  "devDependencies": {
+    "jest": "^26.0.1",
+    "rehype-stringify": "^7.0.0",
+    "remark": "^12.0.0",
+    "remark-extract-frontmatter": "^2.0.2",
+    "remark-frontmatter": "^2.0.0",
+    "remark-rehype": "^7.0.0",
+    "unified": "^9.0.0",
+    "yaml": "^1.10.0"
+  }
+}
