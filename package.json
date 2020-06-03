@@ -17,6 +17,9 @@
     "yaml",
     "toml"
   ],
+  "repository": {
+    "url": "https://github.com/nzt/rehype-template"
+  },
   "author": "TANIGUCHI Masaya",
   "license": "MIT",
   "dependencies": {
