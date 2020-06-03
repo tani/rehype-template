@@ -25,8 +25,16 @@ const h = require("hastscript")
 
 exports.template = function template(options = { template: (node, frontmatter) => node }) {
     return function transformer(node, file) {
-        return options.template(node, file.data)
+        const children = options.template(node.children, file.data)
+        return {...node, children: Array.isArray(children) ? children : [children]}
     }
 }
 
 exports.html = htm.bind(h)
+
+exports.doctype = {
+    type: "doctype",
+    name: "html",
+    public: null,
+    system: null
+}

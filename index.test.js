@@ -27,8 +27,36 @@ const frontmatter = require("remark-frontmatter")
 const extract = require("remark-extract-frontmatter")
 const stringify = require("rehype-stringify")
 const { parse } = require("yaml")
-const { html, template } = require(".")
+const { html, template, doctype } = require(".")
 
+test("Template with options and doctype", () => {
+    const i = `
+---
+title: test
+---
+# test
+test`;
+
+    const t = (node, frontmatter) => html`
+        ${doctype}
+        <html>
+            <head>
+                <title>${frontmatter.title}</title>
+            </head>
+            <body>${node}</body>
+        </html>
+    `;
+
+    const o = unified()
+        .use(remark)
+        .use(frontmatter)
+        .use(extract, {yaml: parse})
+        .use(remark2rehype)
+        .use(template, {template: t})
+        .use(stringify)
+        .processSync(i)
+    expect(o.toString()).toBe("<!doctype html><html><head><title>test</title></head><body><h1>test</h1>\n<p>test</p></body></html>")
+})
 test("Template with options", () => {
     const i = `
 ---
@@ -56,7 +84,6 @@ test`;
         .processSync(i)
     expect(o.toString()).toBe("<html><head><title>test</title></head><body><h1>test</h1>\n<p>test</p></body></html>")
 })
-
 test("Template without options", () => {
     const i = `
 ---

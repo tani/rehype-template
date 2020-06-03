@@ -30,9 +30,10 @@ const frontmatter = require("remark-frontmatter")
 const extract = require("remark-extract-frontmatter")
 const stringify = require("rehype-stringify")
 const { parse } = require("yaml")
-const { html, template } = require("rehype-template")
+const { html, template, doctype } = require("rehype-template")
 
 const t = (node, frontmatter) => html`
+    ${doctype}
     <html>
         <head>
             <title>${frontmatter.title}</title>
@@ -57,7 +58,7 @@ unified()
 Now, running `node example` yields:
 
 ```html
-<html><head><title>Example</title></head><body><h1>Example</h1>
+<!doctype html><html><head><title>Example</title></head><body><h1>Example</h1>
 <p>This is example</p></body></html>
 ```
 
@@ -71,6 +72,9 @@ Wrap the content with `options.template`, which uses *template literal*.
     - `node` Syntax tree
     - `frontmatter` Object as frontmatter parsed by `remark-frontmatter` and `remark-extract-frontmatter`.
     - This function returns new syntax tree.
+
+### `doctype`
+Insert doctype element into a template like the above.
 
 ### `html`
 
