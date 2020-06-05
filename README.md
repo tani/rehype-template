@@ -34,6 +34,7 @@ const { html, template, doctype } = require("rehype-template")
 
 const t = (node, frontmatter) => html`
     ${doctype}
+    ${comment("example")}
     <html>
         <head>
             <title>${frontmatter.title}</title>
@@ -58,7 +59,7 @@ unified()
 Now, running `node example` yields:
 
 ```html
-<!doctype html><html><head><title>Example</title></head><body><h1>Example</h1>
+<!doctype html><!--example--><html><head><title>Example</title></head><body><h1>Example</h1>
 <p>This is example</p></body></html>
 ```
 
@@ -74,7 +75,10 @@ Wrap the content with `options.template`, which uses *template literal*.
     - This function returns new syntax tree.
 
 ### `doctype`
-Insert doctype element into a template like the above.
+Insert a doctype element into a template like the above.
+
+### `comment(value)`
+Insert a comment element into a template like the above.
 
 ### `html`
 

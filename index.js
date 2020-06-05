@@ -38,3 +38,8 @@ exports.doctype = {
     public: null,
     system: null
 }
+
+exports.comment = (value) => ({
+    type: "comment",
+    value
+})
